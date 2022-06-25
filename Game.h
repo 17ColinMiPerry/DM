@@ -7,19 +7,22 @@ class Game{
 
 public:
   Game();
-  Game(Player one, Player two);
+  Game(Player& one, Player& two);
 
-  void populatePlayers(Player one, Player two);
+  void populatePlayers(Player& one, Player& two);
 
+  void getPriorityPlayer();
   void takeTurn(BattleChoice oneMove, BattleChoice twoMove);
 
 private:
-  Player playerOne;
-  Player playerTwo;
+  // *** CONSIDER SWITCHING THESE TO POINTERS ***
+  Player* playerOne;
+  Player* playerTwo;
 
   int turnCount;
 
-  Player* currentPlayer;
+  Player* fastPlayer;
+  Player* slowPlayer;
 };
 
 #endif

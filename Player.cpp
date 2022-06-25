@@ -5,9 +5,17 @@ Player::Player()
   ;
 }
 
-std::vector<DM> Player::getTeam()
+Player::Player(std::vector<DM> newTeam)
 {
-  return team;
+  team = newTeam;
+
+  if (team.size() > 0)
+    activeMon = team[0];
+}
+
+std::vector<DM>* Player::getTeam()
+{
+  return &team;
 }
 
 void Player::addTeamMember(DM member)
@@ -16,4 +24,9 @@ void Player::addTeamMember(DM member)
     return;
 
   team.push_back(member);
+}
+
+DM Player::getActiveMon()
+{
+  return activeMon;
 }
