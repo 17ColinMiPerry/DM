@@ -9,7 +9,7 @@
 class Moves{
 public:
 
-  //Move Constructors
+  // Move Constructors
   Moves();
   Moves(std::string name, int mt = BASE_TYPE, int bp = BASE_MOVE_POWER,
         int critCh = BASE_CRIT, int acc = BASE_ACCURACY);
