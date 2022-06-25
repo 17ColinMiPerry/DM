@@ -1,20 +1,9 @@
+#ifndef DM_H
+#define DM_H
+
 #include <vector>
 #include <string>
-
-// DAEMON TYPING - NULL MUST ALWAYS BE LAST
-  enum Types{
-    fire = 0,
-    water = 1,
-    air = 2,
-    grass = 3,
-    earth = 4,
-    light = 5,
-    shadow = 6,
-    poison = 7,
-    mech = 8,
-    psionic = 9,
-    null
-  };
+#include "globals.h"
 
 // DAEMON MOVES
 class Moves{
@@ -22,7 +11,8 @@ public:
 
   //Move Constructors
   Moves();
-  Moves(int bp, int mt, std::string name, int critMod = 1, int acc = 1);
+  Moves(std::string name, int mt = BASE_TYPE, int bp = BASE_MOVE_POWER,
+        int critCh = BASE_CRIT, int acc = BASE_ACCURACY);
 
   // Setters
   void setBasePower(int bp);
@@ -39,7 +29,7 @@ private:
 
   // Move Attributes
   int basePower;
-  int critModifier;
+  int critCh;
   int accuracy;
   Types moveType;
 
@@ -52,7 +42,8 @@ public:
 
   // Daemon Constructors
   DM();
-  DM(int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int t2 = null, int eva = 1, int crit = 1, int prec = 1);
+  DM(int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int t2 = BASE_TYPE,
+     int eva = BASE_EVASION, int crit = BASE_CRIT, int prec = BASE_PRECISION);
 
   // Setters
   void setPrimaryType(int type);
@@ -64,7 +55,8 @@ public:
   void setATK(int a);
   void setSPED(int s);
 
-  void addMove(int bp, int mt, std::string name);
+  void addMove(std::string name, int mt = BASE_TYPE, int bp = BASE_MOVE_POWER,
+               int critCh = BASE_CRIT, int acc = BASE_ACCURACY);
 
   // Getters
   int getPrimaryType();
@@ -96,7 +88,9 @@ private:
 
   // Base Battle Factors
   int evasion;
-  int critCh;
+  int critMod;
   int precision;
 
 };
+
+#endif

@@ -85,6 +85,10 @@ DM::DM()
   spAtk = 0;
   atk = 0;
   sped = 0;
+
+  int evasion = 1;
+  int critMod = 1;
+  int precision = 1;
 }
 
 DM::DM(int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int t2, int eva, int crit, int prec)
@@ -98,21 +102,21 @@ DM::DM(int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int 
   atk = newATK;
   sped = newSPED;
 
-  evasion = 1;
-  critCh = 1;
-  precision = 1;
+  evasion = eva;
+  critMod = crit;
+  precision = prec;
 }
 
 
 // DM Move Management
-void DM::addMove(int bp, int mt, std::string name)
+void DM::addMove(std::string name, int mt, int bp, int crit, int acc)
 {
   if (moveSet.size() >= 4)
     return;
     if (mt > null || mt < fire)
     return;
 
-    Moves newMove(bp, mt, name);
+    Moves newMove(name, mt, bp, crit, acc);
 
     moveSet.push_back(newMove);
 }
@@ -129,13 +133,13 @@ Moves::Moves()
   ;
 }
 
-Moves::Moves(int bp, int mt, std::string name, int critMod, int acc)
+Moves::Moves(std::string name, int mt, int bp, int crit, int acc)
 {
   moveName = name;
   basePower = bp;
   moveType = static_cast<Types> (mt);
 
-  critModifier = critMod;
+  critCh = crit;
   accuracy = acc;
 }
 
