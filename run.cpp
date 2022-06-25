@@ -17,7 +17,6 @@ int main()
     std::cout << carl.getMoves()[j].getBasePower() << "\n";
   }
 
-//  std::cout << carl.getSecondaryType();
 
   return 0;
 }
