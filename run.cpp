@@ -19,13 +19,21 @@ int main()
   carlos.addMove("3", 6, 50);
   carlos.addMove("4", 8, 70);
 
+  DM carlito(100, 100, 100, 100, 100, 8);
+  carlito.addMove("1", 2, 10);
+  carlito.addMove("2", 4, 30);
+  carlito.addMove("3", 6, 50);
+  carlito.addMove("4", 8, 70);
+
   std::vector<DM> p1Team;
   p1Team.push_back(carl);
   p1Team.push_back(carlos);
+  p1Team.push_back(carlito);
 
   std::vector<DM> p2Team;
   p2Team.push_back(carl);
   p2Team.push_back(carlos);
+  p2Team.push_back(carlito);
 
   Player p1(p1Team);
   Player p2(p2Team);
@@ -34,7 +42,7 @@ int main()
 
   std::cout << (*p1.getTeam())[0].getPrimaryType() << "\n";
 
-  gamestate.takeTurn(benchOne, benchOne);
+  gamestate.takeTurn(benchTwo, benchOne);
 
   std::cout << (*p1.getTeam())[0].getPrimaryType() << "\n";
 

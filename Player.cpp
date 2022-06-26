@@ -28,5 +28,10 @@ void Player::addTeamMember(DM member)
 
 DM Player::getActiveMon()
 {
-  return activeMon;
+  return team[0];
+}
+
+DM* Player::getActiveMonPtr()
+{
+  return &team[0];
 }

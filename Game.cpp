@@ -65,6 +65,8 @@ void Game::takeTurn(BattleChoice oneMove, BattleChoice twoMove)
   bool oneSwitch = false;
   bool twoSwitch = false;
 
+  int switchIndexOne = oneMove - 4;
+  int switchIndexTwo = twoMove - 4;
 
   // *** CREATE ROBUST LOGIC TO SWITCH TO DIFFERENT POSITIONS IN BENCH ***
   if (oneMove == 5 | oneMove == 6)
@@ -77,26 +79,28 @@ void Game::takeTurn(BattleChoice oneMove, BattleChoice twoMove)
   {
     std::vector<DM>* newTeamOrderOne = fastPlayer->getTeam();
 
-    DM placeHolder = (*newTeamOrderOne)[1];
-    (*fastPlayer->getTeam())[1] = (*fastPlayer->getTeam())[0];
-    (*fastPlayer->getTeam())[0] = placeHolder;
+    DM placeHolder = (*newTeamOrderOne)[switchIndexOne];
+    (*fastPlayer->getTeam())[switchIndexOne] = *(fastPlayer->getActiveMonPtr());
+    *(fastPlayer->getActiveMonPtr()) = placeHolder;
   }
   else if (twoSwitch)
   {
     std::vector<DM>* newTeamOrderTwo = slowPlayer->getTeam();
 
-    DM placeHolder = (*newTeamOrderTwo)[1];
-    (*slowPlayer->getTeam())[1] = (*slowPlayer->getTeam())[0];
-    (*slowPlayer->getTeam())[0] = placeHolder;
+    DM placeHolder = (*newTeamOrderTwo)[switchIndexOne];
+    (*slowPlayer->getTeam())[switchIndexOne] = *(slowPlayer->getActiveMonPtr());
+    *(slowPlayer->getActiveMonPtr()) = placeHolder;
   }
   else if (oneSwitch)
   {
     std::vector<DM>* newTeamOrderOne = fastPlayer->getTeam();
 
-    DM placeHolder = (*newTeamOrderOne)[1];
-    (*fastPlayer->getTeam())[1] = (*fastPlayer->getTeam())[0];
-    (*fastPlayer->getTeam())[0] = placeHolder;
+    DM placeHolder = (*newTeamOrderOne)[switchIndexOne];
+    (*fastPlayer->getTeam())[switchIndexOne] = *(fastPlayer->getActiveMonPtr());
+    *(fastPlayer->getActiveMonPtr()) = placeHolder;
   }
+
+
 
   // figure this out later LOL need to implement battle damage and DM hp modification
 }
