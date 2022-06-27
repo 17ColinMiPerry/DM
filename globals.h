@@ -9,11 +9,15 @@ enum Types{
   air = 2,
   grass = 3,
   earth = 4,
-  light = 5,
-  shadow = 6,
+  holy = 5,
+  abyssal = 6,
   poison = 7,
   mech = 8,
   psionic = 9,
+  electric = 10,
+  sound = 11,
+  ice = 12,
+  bug = 13,
   null
 };
 

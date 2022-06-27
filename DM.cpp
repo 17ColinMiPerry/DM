@@ -1,4 +1,5 @@
 #include "DM.h"
+#include "Moves.h"
 
 // DM Getters
 int DM::getPrimaryType()
@@ -116,87 +117,27 @@ DM::~DM()
 }
 
 // DM Move Management
-void DM::addMove(std::string name, int mt, int bp, int crit, int acc)
+void DM::addMove(std::string name, bool* mp, int mt, int crit, int acc, int bp)
 {
   if (moveSet.size() >= 4)
     return;
     if (mt > null || mt < fire)
     return;
 
+  Moves* newMove;
+
   // create logic for move properties using the bool array
-  Moves* newMove = new DamagingMoves(name, mt, crit, acc, bp);
+  if (!mp[static_cast<int>(status)])
+    newMove = new DamagingMoves(name, mp, mt, acc, crit, bp);
+  if (mp[static_cast<int>(status)])
+    newMove = new StatusMoves(name, mp, mt, acc);
+
 
   moveSet.push_back(newMove);
+
 }
 
 std::vector<Moves*> DM::getMoves()
 {
     return moveSet;
-}
-
-
-// Move Constructors
-Moves::Moves()
-{
-  ;
-}
-
-Moves::Moves(std::string name, int mt, int crit, int acc)
-{
-  moveName = name;
-  moveType = static_cast<Types> (mt);
-
-  critCh = crit;
-  accuracy = acc;
-
-  for (int i = 0; i < 3; i++)
-  {
-    moveProperties[i] = 0;
-  }
-
-}
-
-Moves::~Moves()
-{
-  ;
-}
-
-// Move Setters
-
-void Moves::setMoveType(int mt)
-{
-  moveType = static_cast<Types>(mt);
-}
-
-void Moves::setMoveName(std::string name)
-{
-  moveName = name;
-}
-
-
-// Move Getters
-
-int Moves::getMoveType()
-{
-  return moveType;
-}
-
-std::string Moves::getMoveName()
-{
-  return moveName;
-}
-
-bool* Moves::getMoveProperties()
-{
-  return moveProperties;
-}
-
-
-// Damaging Moves
-
-DamagingMoves::DamagingMoves(std::string name, int mt, int critCh,
-                             int acc, int bp)
-  :Moves(name, mt, critCh, acc)
-{
-  basePower = bp;
 }

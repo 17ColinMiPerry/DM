@@ -4,47 +4,8 @@
 #include <vector>
 #include <string>
 #include "globals.h"
+#include "Moves.h"
 
-// DAEMON MOVES
-class Moves{
-public:
-
-  // Move Constructors and Destructors
-  Moves();
-  Moves(std::string name, int mt = BASE_TYPE, int critCh = BASE_CRIT, int acc = BASE_ACCURACY);
-  virtual ~Moves();
-
-  // Setters
-  void setMoveType(int mt);
-  void setMoveName(std::string name);
-
-  // Getters
-  int getMoveType();
-  std::string getMoveName();
-  virtual bool* getMoveProperties();
-
-  // Game Interaction
-
-private:
-
-  std::string moveName;
-
-  // Move Attributes *** MOVE CRITCH TO DMGING MOVES ***
-  int critCh;
-  int accuracy;
-  Types moveType;
-  bool moveProperties[3];
-
-};
-
-class DamagingMoves: public Moves
-{
-public:
-  DamagingMoves(std::string name, int mt = BASE_TYPE, int critCh = BASE_CRIT,
-                int acc = BASE_ACCURACY, int bp = BASE_MOVE_POWER);
-private:
-  int basePower;
-};
 
 // DAEMON
 class DM
@@ -67,8 +28,8 @@ public:
   void setATK(int a);
   void setSPED(int s);
 
-  void addMove(std::string name, int mt = BASE_TYPE, int bp = BASE_MOVE_POWER,
-               int critCh = BASE_CRIT, int acc = BASE_ACCURACY);
+  void addMove(std::string name, bool* mp, int mt = BASE_TYPE, int critCh = BASE_CRIT,
+               int acc = BASE_ACCURACY, int bp = BASE_MOVE_POWER);
 
   // Getters
   int getPrimaryType();
