@@ -27,6 +27,12 @@ enum BattleChoice{
   benchTwo = 6
 };
 
+enum MoveProperties{
+  priority = 0,
+  status = 1,
+  bypassAccuracy = 2
+};
+
 // CONSTANTS
 const int BASE_CRIT = 10;
 const int BASE_ACCURACY = 100;

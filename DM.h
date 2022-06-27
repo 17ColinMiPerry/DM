@@ -9,30 +9,41 @@
 class Moves{
 public:
 
-  // Move Constructors
+  // Move Constructors and Destructors
   Moves();
-  Moves(std::string name, int mt = BASE_TYPE, int bp = BASE_MOVE_POWER,
-        int critCh = BASE_CRIT, int acc = BASE_ACCURACY);
+  Moves(std::string name, int mt = BASE_TYPE, int critCh = BASE_CRIT, int acc = BASE_ACCURACY);
+  virtual ~Moves();
 
   // Setters
-  void setBasePower(int bp);
   void setMoveType(int mt);
   void setMoveName(std::string name);
 
   // Getters
-  int getBasePower();
   int getMoveType();
   std::string getMoveName();
+  virtual bool* getMoveProperties();
+
+  // Game Interaction
+
 private:
 
   std::string moveName;
 
-  // Move Attributes
-  int basePower;
+  // Move Attributes *** MOVE CRITCH TO DMGING MOVES ***
   int critCh;
   int accuracy;
   Types moveType;
+  bool moveProperties[3];
 
+};
+
+class DamagingMoves: public Moves
+{
+public:
+  DamagingMoves(std::string name, int mt = BASE_TYPE, int critCh = BASE_CRIT,
+                int acc = BASE_ACCURACY, int bp = BASE_MOVE_POWER);
+private:
+  int basePower;
 };
 
 // DAEMON
@@ -44,6 +55,7 @@ public:
   DM();
   DM(int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int t2 = BASE_TYPE,
      int eva = BASE_EVASION, int crit = BASE_CRIT, int prec = BASE_PRECISION);
+  ~DM();
 
   // Setters
   void setPrimaryType(int type);
@@ -68,7 +80,7 @@ public:
   int getATK();
   int getSPED();
 
-  std::vector<Moves> getMoves();
+  std::vector<Moves*> getMoves();
 
 private:
 
@@ -77,7 +89,7 @@ private:
   Types secondaryType;
 
   // Vector of moves (size 4)
-  std::vector<Moves> moveSet;
+  std::vector<Moves*> moveSet;
 
   // Base Stats
   int spD;

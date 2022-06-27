@@ -8,22 +8,22 @@
 int main()
 {
   DM carl(200,200,200,200,200, 4);
-  carl.addMove("1", 3, 20);
+  /*carl.addMove("1", 3, 20);
   carl.addMove("2", 5, 40);
   carl.addMove("3", 7, 60);
-  carl.addMove("4", null, 80);
+  carl.addMove("4", null, 80);*/
 
   DM carlos(100, 100, 100, 100, 100, 6);
-  carlos.addMove("1", 2, 10);
+  /*carlos.addMove("1", 2, 10);
   carlos.addMove("2", 4, 30);
   carlos.addMove("3", 6, 50);
-  carlos.addMove("4", 8, 70);
+  carlos.addMove("4", 8, 70);*/
 
   DM carlito(100, 100, 100, 100, 100, 8);
-  carlito.addMove("1", 2, 10);
+  /*carlito.addMove("1", 2, 10);
   carlito.addMove("2", 4, 30);
   carlito.addMove("3", 6, 50);
-  carlito.addMove("4", 8, 70);
+  carlito.addMove("4", 8, 70);*/
 
   std::vector<DM> p1Team;
   p1Team.push_back(carl);
@@ -40,15 +40,15 @@ int main()
 
   Game gamestate(p1, p2);
 
-  std::cout << (*p1.getTeam())[0].getPrimaryType() << "\n";
+  //std::cout << ((*p1.getTeam())[0].getMoves()[0])->getMoveName() << "\n";
 
   gamestate.takeTurn(benchTwo, benchOne);
 
-  std::cout << (*p1.getTeam())[0].getPrimaryType() << "\n";
+  //std::cout << ((*p1.getTeam())[0].getMoves()[3])->getMoveName() << "\n";
 
   gamestate.takeTurn(benchOne, benchOne);
 
-  std::cout << (*p1.getTeam())[0].getPrimaryType() << "\n";
+  //std::cout << ((*p1.getTeam())[0].getMoves()[1])->getMoveName() << "\n";
 
 
 

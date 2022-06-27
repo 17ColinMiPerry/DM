@@ -107,6 +107,13 @@ DM::DM(int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int 
   precision = prec;
 }
 
+DM::~DM()
+{
+  for (int i = 0; i < moveSet.size(); i++)
+  {
+    delete moveSet[i];
+  }
+}
 
 // DM Move Management
 void DM::addMove(std::string name, int mt, int bp, int crit, int acc)
@@ -116,12 +123,13 @@ void DM::addMove(std::string name, int mt, int bp, int crit, int acc)
     if (mt > null || mt < fire)
     return;
 
-    Moves newMove(name, mt, bp, crit, acc);
+  // create logic for move properties using the bool array
+  Moves* newMove = new DamagingMoves(name, mt, crit, acc, bp);
 
-    moveSet.push_back(newMove);
+  moveSet.push_back(newMove);
 }
 
-std::vector<Moves> DM::getMoves()
+std::vector<Moves*> DM::getMoves()
 {
     return moveSet;
 }
@@ -133,22 +141,27 @@ Moves::Moves()
   ;
 }
 
-Moves::Moves(std::string name, int mt, int bp, int crit, int acc)
+Moves::Moves(std::string name, int mt, int crit, int acc)
 {
   moveName = name;
-  basePower = bp;
   moveType = static_cast<Types> (mt);
 
   critCh = crit;
   accuracy = acc;
+
+  for (int i = 0; i < 3; i++)
+  {
+    moveProperties[i] = 0;
+  }
+
 }
 
+Moves::~Moves()
+{
+  ;
+}
 
 // Move Setters
-void Moves::setBasePower(int bp)
-{
-  basePower = bp;
-}
 
 void Moves::setMoveType(int mt)
 {
@@ -162,10 +175,6 @@ void Moves::setMoveName(std::string name)
 
 
 // Move Getters
-int Moves::getBasePower()
-{
-  return basePower;
-}
 
 int Moves::getMoveType()
 {
@@ -175,4 +184,19 @@ int Moves::getMoveType()
 std::string Moves::getMoveName()
 {
   return moveName;
+}
+
+bool* Moves::getMoveProperties()
+{
+  return moveProperties;
+}
+
+
+// Damaging Moves
+
+DamagingMoves::DamagingMoves(std::string name, int mt, int critCh,
+                             int acc, int bp)
+  :Moves(name, mt, critCh, acc)
+{
+  basePower = bp;
 }
