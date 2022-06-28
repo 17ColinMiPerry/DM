@@ -18,7 +18,7 @@ enum Types{
   sound = 11,
   ice = 12,
   bug = 13,
-  null
+  nullType
 };
 
 
@@ -31,10 +31,11 @@ enum BattleChoice{
   benchTwo = 6
 };
 
-enum MoveProperties{
+enum MoveProps{
   priority = 0,
   status = 1,
-  bypassAccuracy = 2
+  bypassAccuracy = 2,
+  nullProp
 };
 
 // CONSTANTS
@@ -48,7 +49,7 @@ const int BASE_EVASION = 0;
 const int BASE_CRITMOD = 0;
 const int BASE_PRECISION = 100;
 
-const Types BASE_TYPE = null;
+const Types BASE_TYPE = nullType;
 
 const int TEAM_SIZE = 3;
 

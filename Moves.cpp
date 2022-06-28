@@ -13,7 +13,7 @@ Moves::Moves(std::string name, bool* mp, int mt, int acc)
 
   accuracy = acc;
 
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < nullProp; i++)
   {
     moveProperties[i] = mp[i];
   }

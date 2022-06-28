@@ -78,8 +78,8 @@ void DM::setSPED(int s)
 // DM Constructors
 DM::DM()
 {
-  primaryType = null;
-  secondaryType = null;
+  primaryType = nullType;
+  secondaryType = nullType;
 
   spD = 0;
   def = 0;
@@ -121,7 +121,7 @@ void DM::addMove(std::string name, bool* mp, int mt, int crit, int acc, int bp)
 {
   if (moveSet.size() >= 4)
     return;
-    if (mt > null || mt < fire)
+    if (mt > nullType || mt < fire)
     return;
 
   Moves* newMove;
