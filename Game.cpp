@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 Game::Game()
 {
@@ -68,11 +69,26 @@ void Game::takeTurn(BattleChoice oneMove, BattleChoice twoMove)
   int switchIndexOne = oneMove - 4;
   int switchIndexTwo = twoMove - 4;
 
-  // *** CREATE ROBUST LOGIC TO SWITCH TO DIFFERENT POSITIONS IN BENCH ***
   if (oneMove == 5 | oneMove == 6)
     oneSwitch = true;
   if (twoMove == 5 | twoMove == 6)
     twoSwitch = true;
+
+  BattleChoice fastMove, slowMove;
+
+  if (playerOne == fastPlayer)
+  {
+    fastMove = oneMove;
+    slowMove = twoMove;
+  }
+  else
+  {
+    fastMove = twoMove;
+    slowMove = oneMove;
+  }
+
+  DM* fastMon = fastPlayer->getActiveMonPtr();
+  DM* slowMon = slowPlayer->getActiveMonPtr();
 
 
   if (oneSwitch && playerOne == fastPlayer)
@@ -100,7 +116,52 @@ void Game::takeTurn(BattleChoice oneMove, BattleChoice twoMove)
     *(fastPlayer->getActiveMonPtr()) = placeHolder;
   }
 
-
+  // create a method for calculating damage under normal battle conditions
+  if (fastMove == attackOne || fastMove == attackTwo ||
+      fastMove == attackThree || fastMove == attackFour)
+  {
+    calcRegularBattleDamage(*fastMon, fastMon->getMoves()[fastMove - 1], *slowMon);
+  }
+  if (slowMove == attackOne || slowMove == attackTwo ||
+      slowMove == attackThree || slowMove == attackFour)
+  {
+    calcRegularBattleDamage(*slowMon, slowMon->getMoves()[slowMove - 1], *fastMon);
+  }
 
   // figure this out later LOL need to implement battle damage and DM hp modification
+}
+
+void Game::calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender)
+{
+  srand(time(0));
+
+  double physDmg = 42.0 * attack->getBasePower() * attacker.getATK()/static_cast<double>(defender.getDEF());
+  physDmg /= 50.0;
+  physDmg += 2.0;
+
+  double specDmg = 42 * attack->getBasePower() * attacker.getSPATK()/static_cast<double>(defender.getSPD());
+  specDmg /= 50.0;
+  specDmg += 2.0;
+
+  double dmg;
+  double range;
+
+  if (attack->getMoveProperties()[phys])
+    dmg = physDmg;
+  else
+    dmg = specDmg;
+
+  range = 0.2 * dmg;
+
+  double randomFactor = rand() % static_cast<int>(range);
+
+  dmg = dmg + (randomFactor - 0.5 * range);
+
+
+  defender.setHP(defender.getHP() - dmg);
+
+  if (defender.getHP() < 0)
+    defender.setHP(0);
+
+
 }

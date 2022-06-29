@@ -12,10 +12,14 @@ public:
   void populatePlayers(Player& one, Player& two);
 
   void getPriorityPlayer();
+
   void takeTurn(BattleChoice oneMove, BattleChoice twoMove);
 
+  // helper functions
+
+  void calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender);
+
 private:
-  // *** CONSIDER SWITCHING THESE TO POINTERS ***
   Player* playerOne;
   Player* playerTwo;
 

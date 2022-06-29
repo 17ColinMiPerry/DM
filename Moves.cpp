@@ -17,8 +17,8 @@ Moves::Moves(std::string name, bool* mp, int mt, int acc)
   {
     moveProperties[i] = mp[i];
   }
-
 }
+
 
 Moves::~Moves()
 {
@@ -45,12 +45,12 @@ void Moves::setMoveAccuracy(int acc)
 
 // Move Getters
 
-int Moves::getMoveType()
+int Moves::getMoveType() const
 {
   return moveType;
 }
 
-std::string Moves::getMoveName()
+std::string Moves::getMoveName() const
 {
   return moveName;
 }
@@ -60,9 +60,14 @@ bool* Moves::getMoveProperties()
   return moveProperties;
 }
 
-int Moves::getMoveAccuracy()
+int Moves::getMoveAccuracy() const
 {
   return accuracy;
+}
+
+int Moves::getBasePower()
+{
+  return 0;
 }
 
 // Damaging Moves
@@ -75,6 +80,31 @@ DamagingMoves::DamagingMoves(std::string name, bool* mp, int mt, int acc,
   critCh = crit;
 }
 
+DamagingMoves::DamagingMoves()
+{
+
+}
+
+void DamagingMoves::setBasePower(int bp)
+{
+  basePower = bp;
+}
+
+void DamagingMoves::setCritCh(int cc)
+{
+  critCh = cc;
+}
+
+
+int DamagingMoves::getBasePower()
+{
+  return basePower;
+}
+
+int DamagingMoves::getCritCh() const
+{
+  return critCh;
+}
 
 // Status Moves
 

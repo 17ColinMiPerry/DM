@@ -1,6 +1,9 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <stdlib.h>
+#include <time.h>
+
 
 // DAEMON TYPING - NULL MUST ALWAYS BE LAST
 enum Types{
@@ -35,13 +38,14 @@ enum MoveProps{
   priority = 0,
   status = 1,
   bypassAccuracy = 2,
+  phys = 3,
   nullProp
 };
 
 // CONSTANTS
 const int BASE_CRIT = 10;
 const int BASE_ACCURACY = 100;
-const int BASE_MOVE_POWER = 0;
+const int BASE_MOVE_POWER = 100;
 
 const int BASE_STAT = 100;
 

@@ -9,13 +9,13 @@ class Player{
 public:
   Player();
   Player(std::vector<DM> newTeam);
-
+  
   std::vector<DM>* getTeam();
   void addTeamMember(DM member);
 
   DM getActiveMon();
   DM* getActiveMonPtr();
-  
+
 private:
   std::vector<DM> team;
   DM activeMon;

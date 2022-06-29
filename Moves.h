@@ -12,6 +12,7 @@ public:
   // Move Constructors and Destructors
   Moves();
   Moves(std::string name, bool* mp, int mt = BASE_TYPE, int acc = BASE_ACCURACY);
+  Moves(const Moves& otherMove);
   virtual ~Moves();
 
   // Setters
@@ -20,11 +21,12 @@ public:
   void setMoveAccuracy(int acc);
 
   // Getters
-  int getMoveType();
-  std::string getMoveName();
+  virtual int getBasePower();
+  int getMoveType() const;
+  std::string getMoveName() const;
   bool* getMoveProperties();
-  int getMoveAccuracy();
-  
+  int getMoveAccuracy() const;
+
   // Game Interaction
 
 private:
@@ -34,7 +36,7 @@ private:
   // Move Attributes
   int accuracy;
   Types moveType;
-  bool moveProperties[3];
+  bool moveProperties[4];
 
 };
 
@@ -45,7 +47,15 @@ class DamagingMoves: public Moves
 public:
   DamagingMoves(std::string name, bool* mp, int mt = BASE_TYPE, int acc = BASE_ACCURACY,
                 int critCh = BASE_CRIT, int bp = BASE_MOVE_POWER);
+  DamagingMoves();
+
+  void setBasePower(int bp);
+  void setCritCh(int cc);
+
+  int getBasePower();
+  int getCritCh() const;
 private:
+  // these need setters and getters
   int basePower;
   int critCh;
 };

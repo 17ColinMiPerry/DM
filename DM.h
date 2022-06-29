@@ -14,14 +14,19 @@ public:
 
   // Daemon Constructors
   DM();
-  DM(int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int t2 = BASE_TYPE,
+  DM(int hp, int newSPD, int newDEF, int newSPA, int newATK, int newSPED, int t1, int t2 = BASE_TYPE,
      int eva = BASE_EVASION, int crit = BASE_CRIT, int prec = BASE_PRECISION);
+  DM(const DM& otherDM);
   ~DM();
+
+  DM& operator=(const DM& otherDM);
+
 
   // Setters
   void setPrimaryType(int type);
   void setSecondaryType(int type);
 
+  void setHP(int hp);
   void setSPD(int s);
   void setDEF(int d);
   void setSPATK(int s);
@@ -32,16 +37,17 @@ public:
                int acc = BASE_ACCURACY, int bp = BASE_MOVE_POWER);
 
   // Getters
-  int getPrimaryType();
-  int getSecondaryType();
+  int getPrimaryType() const;
+  int getSecondaryType() const;
 
-  int getSPD();
-  int getDEF();
-  int getSPATK();
-  int getATK();
-  int getSPED();
+  int getHP() const;
+  int getSPD() const;
+  int getDEF() const;
+  int getSPATK() const;
+  int getATK() const;
+  int getSPED() const;
 
-  std::vector<Moves*> getMoves();
+  std::vector<Moves*> getMoves() const;
 
 private:
 
@@ -53,6 +59,7 @@ private:
   std::vector<Moves*> moveSet;
 
   // Base Stats
+  int hitpoints;
   int spD;
   int def;
   int spAtk;

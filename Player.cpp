@@ -13,6 +13,7 @@ Player::Player(std::vector<DM> newTeam)
     activeMon = team[0];
 }
 
+
 std::vector<DM>* Player::getTeam()
 {
   return &team;
