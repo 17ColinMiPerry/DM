@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <iostream>
 
+using namespace std::literals::chrono_literals;
+
 Game::Game()
 {
   turnCount = 0;
@@ -135,6 +137,8 @@ void Game::calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender)
 {
   srand(time(0));
 
+  
+
   double physDmg = 42.0 * attack->getBasePower() * attacker.getATK()/static_cast<double>(defender.getDEF());
   physDmg /= 50.0;
   physDmg += 2.0;
@@ -157,11 +161,29 @@ void Game::calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender)
 
   dmg = dmg + (randomFactor - 0.5 * range);
 
-
+  if (checkCrit(attacker, attack))
+    dmg *= 1.3333;
   defender.setHP(defender.getHP() - dmg);
 
   if (defender.getHP() < 0)
     defender.setHP(0);
 
 
+}
+
+// fix both people critting at the same time due to srand
+bool Game::checkCrit(DM& attacker, Moves* attack)
+{
+  std::this_thread::sleep_for(1500ms);
+  int roll = rand() % 100;
+  if (roll >= (100 - attack->getCritCh()))
+  {
+    std::cout << "CRIT!\n";
+    return true;
+  }
+  else
+  {
+    return false;
+
+  }
 }

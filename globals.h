@@ -3,7 +3,8 @@
 
 #include <stdlib.h>
 #include <time.h>
-
+#include <chrono>
+#include <thread>
 
 // DAEMON TYPING - NULL MUST ALWAYS BE LAST
 enum Types{

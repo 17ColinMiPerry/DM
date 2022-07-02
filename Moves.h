@@ -26,6 +26,7 @@ public:
   std::string getMoveName() const;
   bool* getMoveProperties();
   int getMoveAccuracy() const;
+  virtual int getCritCh() const;
 
   // Game Interaction
 

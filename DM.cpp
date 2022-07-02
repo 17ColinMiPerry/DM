@@ -144,7 +144,7 @@ DM::DM(const DM& otherDM)
   {
     newMove = new DamagingMoves(otherDM.getMoves()[i]->getMoveName(), otherDM.getMoves()[i]->getMoveProperties(),
                                 otherDM.getMoves()[i]->getMoveType(), otherDM.getMoves()[i]->getMoveAccuracy(),
-                                otherDM.getMoves()[i]->getBasePower());
+                                otherDM.getMoves()[i]->getCritCh(),otherDM.getMoves()[i]->getBasePower());
     moveSet.push_back(newMove);
   }
 }
@@ -178,17 +178,16 @@ void DM::addMove(std::string name, bool* mp, int mt, int crit, int acc, int bp)
 {
   if (moveSet.size() >= 4)
     return;
-    if (mt > nullType || mt < fire)
+  if (mt > nullType || mt < fire)
     return;
 
   Moves* newMove;
 
   // create logic for move properties using the bool array
   if (!mp[static_cast<int>(status)])
-    newMove = new DamagingMoves(name, mp, mt, acc, crit, bp);
+    newMove = new DamagingMoves(name, mp, mt, acc, crit);
   if (mp[static_cast<int>(status)])
     newMove = new StatusMoves(name, mp, mt, acc);
-
 
   moveSet.push_back(newMove);
 

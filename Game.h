@@ -16,8 +16,9 @@ public:
   void takeTurn(BattleChoice oneMove, BattleChoice twoMove);
 
   // helper functions
-
+  
   void calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender);
+  bool checkCrit(DM& attacker, Moves* attack);
 
 private:
   Player* playerOne;

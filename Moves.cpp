@@ -70,6 +70,11 @@ int Moves::getBasePower()
   return 0;
 }
 
+int Moves::getCritCh() const
+{
+  return 0;
+}
+
 // Damaging Moves
 
 DamagingMoves::DamagingMoves(std::string name, bool* mp, int mt, int acc,
