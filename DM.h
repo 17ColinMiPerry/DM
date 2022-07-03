@@ -36,6 +36,8 @@ public:
 
   void addMove(std::string name, bool* mp, int mt = BASE_TYPE, int critCh = BASE_CRIT,
                int acc = BASE_ACCURACY, int bp = BASE_MOVE_POWER);
+               
+  void addMove(Moves* newMove);
 
   // Getters
   int getPrimaryType() const;

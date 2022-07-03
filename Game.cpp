@@ -19,7 +19,7 @@ Game::Game(Player& one, Player& two)
   playerOne = &one;
   playerTwo = &two;
 
-  turnCount = 0;
+  turnCount = 1;
 
   std::vector<DM>* teamOne = one.getTeam();
   std::vector<DM>* teamTwo = two.getTeam();
@@ -130,6 +130,7 @@ void Game::takeTurn(BattleChoice oneMove, BattleChoice twoMove)
     calcRegularBattleDamage(*slowMon, slowMon->getMoves()[slowMove - 1], *fastMon);
   }
 
+  turnCount++;
   // figure this out later LOL need to implement battle damage and DM hp modification
 }
 

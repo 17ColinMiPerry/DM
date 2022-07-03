@@ -193,6 +193,11 @@ void DM::addMove(std::string name, bool* mp, int mt, int crit, int acc, int bp)
 
 }
 
+void DM::addMove(Moves* newMove)
+{
+  moveSet.push_back(newMove);
+}
+
 std::vector<Moves*> DM::getMoves() const
 {
     return moveSet;

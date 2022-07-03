@@ -19,6 +19,9 @@ public:
   void setMoveType(int mt);
   void setMoveName(std::string name);
   void setMoveAccuracy(int acc);
+  
+  virtual void setBasePower(int bp);
+  virtual void setCritCh(int cc);
 
   // Getters
   virtual int getBasePower();

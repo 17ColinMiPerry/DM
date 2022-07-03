@@ -42,6 +42,15 @@ void Moves::setMoveAccuracy(int acc)
   accuracy = acc;
 }
 
+void Moves::setBasePower(int bp)
+{
+  ;
+}
+
+void Moves::setCritCh(int cc)
+{
+  ;
+}
 
 // Move Getters
 

@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Game.h"
 #include "globals.h"
+#include "helper.h"
 
 #include <iostream>
 
@@ -10,7 +11,9 @@ using namespace std::literals::chrono_literals;
 int main()
 {
   
-
+  std::vector<Moves*> moveslist;
+  createMovelist(moveslist);
+  
   bool mp[nullProp];
   mp[0] = false;
   mp[1] = false;
