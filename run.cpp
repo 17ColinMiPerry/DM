@@ -10,9 +10,13 @@ using namespace std::literals::chrono_literals;
 
 int main()
 {
-  
+  srand(time(NULL));
+
   std::vector<Moves*> moveslist;
+  std::vector<DM> team;
+  
   createMovelist(moveslist);
+  createTeam(team);
   
   bool mp[nullProp];
   mp[0] = false;
@@ -21,16 +25,16 @@ int main()
   mp[3] = false;
 
   DM carl(100, 200, 200,200,200,200, 4);
-  carl.addMove("1", mp, 3, 25);
+  carl.addMove("1", mp, 3, 50);
   carl.addMove("2", mp, 5, 40);
   carl.addMove("3", mp, 7, 60);
   carl.addMove("4", mp, nullType, 80);
 
   DM carlos(100, 100, 100, 100, 100, 100, 6);
-  carlos.addMove("1", mp, 2, 25);
-  carlos.addMove("2", mp, 4, 30);
-  carlos.addMove("3", mp, 6, 50);
-  carlos.addMove("4", mp, 8, 70);
+  carlos.addMove("1", mp, 2, 50);
+  carlos.addMove("2", mp, 4, 0);
+  carlos.addMove("3", mp, 6, 0);
+  carlos.addMove("4", mp, 8, 0);
 
   DM carlito(100, 100, 100, 100, 100, 100, 8);
   carlito.addMove("1", mp, 2, 10);
@@ -55,7 +59,6 @@ int main()
 
   std::cout << ((*p1.getTeam())[0].getHP()) << "\n";
 
-  std::this_thread::sleep_for(1500ms);
   gamestate.takeTurn(attackOne, attackOne);
 
   std::cout << ((*p1.getTeam())[0].getHP()) << "\n";

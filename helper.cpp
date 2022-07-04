@@ -11,7 +11,38 @@
 
 void createTeam(std::vector<DM> newTeam)
 {
-  ;
+  std::ifstream teamFile("team.mon");
+  std::string monName;
+  int hp, spd, def, spa, atk, sped, t1, t2, eva, crit, prec;
+  
+  while(!teamFile.eof())
+  {
+    std::getline(teamFile, monName, ',');
+    teamFile >> hp;
+    teamFile.ignore();
+    teamFile >> spd;
+    teamFile.ignore();
+    teamFile >> def;
+    teamFile.ignore();
+    teamFile >> spa;
+    teamFile.ignore();
+    teamFile >> atk;
+    teamFile.ignore();
+    teamFile >> sped;
+    teamFile.ignore();
+    teamFile >> t1;
+    teamFile.ignore();
+    teamFile >> t2;
+    teamFile.ignore();
+    teamFile >> eva;
+    teamFile.ignore();
+    teamFile >> crit;
+    teamFile.ignore();
+    teamFile >> prec;
+    teamFile.ignore();
+    teamFile.ignore();
+    std::cout << monName << " " << prec << "\n";
+  }
 }
 
 void createMovelist(std::vector<Moves*> moveslist)
@@ -25,7 +56,6 @@ void createMovelist(std::vector<Moves*> moveslist)
   int bp = 100;
   bool moveProps[4] = {false};
   
-  int count = 0;
   while(!moveFile.eof())
   {
     for(int i = 0; i < nullProp; i++)
@@ -47,8 +77,5 @@ void createMovelist(std::vector<Moves*> moveslist)
     moveFile.ignore();
     moveFile.ignore();
     Moves* newMove = new DamagingMoves(moveName, moveProps, mt, acc, crit, bp);
-    std::cout << newMove->getBasePower() << std::endl;
-    count ++;
   }
-
 }

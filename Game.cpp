@@ -136,9 +136,6 @@ void Game::takeTurn(BattleChoice oneMove, BattleChoice twoMove)
 
 void Game::calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender)
 {
-  srand(time(0));
-
-  
 
   double physDmg = 42.0 * attack->getBasePower() * attacker.getATK()/static_cast<double>(defender.getDEF());
   physDmg /= 50.0;
@@ -175,7 +172,6 @@ void Game::calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender)
 // fix both people critting at the same time due to srand
 bool Game::checkCrit(DM& attacker, Moves* attack)
 {
-  std::this_thread::sleep_for(1500ms);
   int roll = rand() % 100;
   if (roll >= (100 - attack->getCritCh()))
   {
