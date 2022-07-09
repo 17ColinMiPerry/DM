@@ -166,7 +166,6 @@ void Game::calcRegularBattleDamage(DM& attacker, Moves* attack, DM& defender)
   if (defender.getHP() < 0)
     defender.setHP(0);
 
-
 }
 
 // fix both people critting at the same time due to srand

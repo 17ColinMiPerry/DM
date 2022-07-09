@@ -14,10 +14,10 @@ int main()
 
   std::vector<Moves*> moveslist;
   std::vector<DM> team;
-  
+
   createMovelist(moveslist);
   createTeam(team);
-  
+
   bool mp[nullProp];
   mp[0] = false;
   mp[1] = false;
@@ -53,7 +53,7 @@ int main()
 
   Game gamestate(p1, p2);
 
-  std::cout << ((*p1.getTeam())[0].getHP()) << "\n";
+  std::cout << ((*p1.getTeam())[0].getHP()) << "fff\n";
 
   gamestate.takeTurn(attackOne, attackOne);
 
